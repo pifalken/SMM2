@@ -1,0 +1,7 @@
+format is little-endian
+repr() will sometimes break/convert the raw binary data. use .hex() to view the bytes as they are
+
+data[0xf4:0xf4 + 0x42].decode("utf16").rstrip("\x00")
+data[0xf4:0xf4 + 0x42].replace(b"\x00", b"").decode()
+
+awk -F "|" '{$2 = sprintf("%x", $2)} {print $2, $4}' object_information.md | tail -n +5 | sed 's/\<[0-9|a-f]\>/0&/' > object_info.dat
