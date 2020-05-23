@@ -8,5 +8,11 @@ Bunch of utils for dealing with SMM2 level formats for "kAIzo"
 ## Usage
 `python level_gen.py course_data_000.bcd`
 
+## Example
+- example 000:
+![example000]
+
+[example000]: https://github.com/pifalken/SMM2/raw/master/other/level_gen_example_000.png
+
 ## Credits
 Thanks to https://github.com/Treeki/SMM2Reversing & https://github.com/0Liam/smm2-documentation for providing level format info
