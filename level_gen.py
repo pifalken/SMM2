@@ -4,6 +4,7 @@ import struct
 import numpy as np
 
 VERBOSE = True # True if you want to see Exception errors & messages
+HUMAN_READABLE = True # output 2 txt files when done
 
 class Course():
     def __init__(self, course_name: str):
@@ -229,6 +230,11 @@ def build_ascii_course(level_data: dict, file_info: list):
 
     return level_mat
 
+def _(level: list) -> list:
+    new_level = list(zip(*level))[::-1]
+    ["".join(new_level[i]) for i in range(len(new_level))]
+    return new_level
+
 if __name__ == "__main__":
     course_name = sys.argv[1]
 
@@ -251,4 +257,7 @@ if __name__ == "__main__":
 
     level_mat = build_ascii_course(level_data, course.file_info)
     _ = course_name.split("bcd")[-2].split("/")[-1]
-    np.savetxt(f"{_}txt", level_mat, fmt = "%s")
+    np.savetxt(f"{_}txt", level_mat, fmt = "%s", delimiter = "")
+
+    if HUMAN_READABLE:
+        np.savetxt(f"HR_{_}txt", np.flipud(level_mat.T), fmt = "%s", delimiter = "")
