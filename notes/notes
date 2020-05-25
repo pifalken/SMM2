@@ -7,4 +7,5 @@ data[0xf4:0xf4 + 0x42].replace(b"\x00", b"").decode()
 awk -F "|" '{$2 = sprintf("%x", $2)} {print $2, $4}' object_information.md | tail -n +5 | sed 's/\<[0-9|a-f]\>/0&/' > object_info.dat
 
 grep -R "<td><a href=\"/MarioMaker/View/" tinfoil_smm2_kaizo_search.txt | sed 's/.*href="\(.*\)".*/\1/' > tinfoil_kaizo_URLs
-sed 's/View/Download/'
+sed -i 's/View/Download/' tinfoil_kaizo_URLs
+sed -i 's/.*/https:\/\/tinfoil\.media&/' tinfoil_kaizo_URLs
