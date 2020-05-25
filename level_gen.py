@@ -1,4 +1,5 @@
 import sys
+import os
 import struct
 
 import numpy as np
@@ -230,14 +231,8 @@ def build_ascii_course(level_data: dict, file_info: list):
 
     return level_mat
 
-def _(level: list) -> list:
-    new_level = list(zip(*level))[::-1]
-    ["".join(new_level[i]) for i in range(len(new_level))]
-    return new_level
 
-if __name__ == "__main__":
-    course_name = sys.argv[1]
-
+def main(course_name: str):
     course = Course(course_name)
     course_data = course.course
 
@@ -261,3 +256,17 @@ if __name__ == "__main__":
 
     if HUMAN_READABLE:
         np.savetxt(f"HR_{_}txt", np.flipud(level_mat.T), fmt = "%s", delimiter = "")
+
+if __name__ == "__main__":
+    # this is old school... (ugly & hacky for python but i cba to import argparser or some shit)
+    if sys.argv[1] == "-d":
+        course_folder = sys.argv[2]
+        for c in os.listdir(course_folder):
+            # the BEST error handling for when your lazy :)
+            try:
+                main(f"{course_folder}/{c}")
+            except:
+                print(f"skipping {c}")
+    else:
+        course_name = sys.argv[1]
+        main(course_name)
