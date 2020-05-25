@@ -9,3 +9,7 @@ awk -F "|" '{$2 = sprintf("%x", $2)} {print $2, $4}' object_information.md | tai
 grep -R "<td><a href=\"/MarioMaker/View/" tinfoil_smm2_kaizo_search.txt | sed 's/.*href="\(.*\)".*/\1/' > tinfoil_kaizo_URLs
 sed -i 's/View/Download/' tinfoil_kaizo_URLs
 sed -i 's/.*/https:\/\/tinfoil\.media&/' tinfoil_kaizo_URLs
+
+cat tinfoil_kaizo_URLs | parallel --gnu "wget {} -P encrypted_courses/"
+for file in *; do unzip -d "${file}_unzip" "$file"; done;
+for file in encrypted_courses/*_unzip/*.bcd; do tmp=$(echo $file | cut -d "/" -f2- | cut -d "_" -f1); echo ${tmp}_dec; ./smm2cd $file decrypted_courses/${tmp}.bcd; done;
