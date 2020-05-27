@@ -1,5 +1,5 @@
 # SMM2
-Bunch of utils for dealing with SMM2 level formats
+Level generator using decrypted SMM2 level files
 
 Built primarily for working on "[kAIzo](https://github.com/pifalken/kAIzo)" (generating SMM2 kaizo levels using LMs, RNNs, and VAEs)
 
