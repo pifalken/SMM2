@@ -1,5 +1,7 @@
 # SMM2
-Bunch of utils for dealing with SMM2 level formats for "kAIzo"
+Bunch of utils for dealing with SMM2 level formats
+
+Built primarily for working on "[kAIzo](https://github.com/pifalken/kAIzo)" (generating SMM2 kaizo levels using LMs, RNNs, and VAEs)
 
 ## Requirements
 1. https://github.com/simontime/SMM2CourseDecryptor
